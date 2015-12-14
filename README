@@ -1,11 +1,11 @@
 new Play application
 =================================
 # Home page
-GET   /                      http://localhost:9000/                                                        get list of all hotels
+GET  http://localhost:9000/                                                        get list of all hotels
 
-GET   /hotels/search         http://localhost:9000/?city = ban                                             search city by city name
+GET  http://localhost:9000/?city = ban                                             search city by city name
 
-GET   /hotels/browse         https://localhost:9000/?sortBy = price & sortDirection = asc or desc          sort and order by price
+GET  https://localhost:9000/?sortBy = price & sortDirection = asc or desc          sort and order by price
 
 
 
