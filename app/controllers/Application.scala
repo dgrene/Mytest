@@ -6,7 +6,6 @@ import models._
 import play.api.libs.json._
 import auth.AuthorizeAction
 
-
 //case class Hotel(City: String, Id: Long, Room: String, Price: Long)
 class Application extends Controller {
 
@@ -22,30 +21,28 @@ class Application extends Controller {
     val hotelList: List[Hotel] = HotelMD.getAllHotel()
     //println(hotelList)
     val json = Json.toJson(hotelList)
-
     //Ok(views.html.index("Your new application is ready."))
     Ok(json)
   }
-  
-  def hotelList(s:String) = Action{
-    println("BY CITY")
+
+  def hotelList(s: String) = Action {
+    //println("BY CITY")
     val hotelList: List[Hotel] = HotelMD.getHotelByCity(s)
-    println(hotelList)
+    //println(hotelList)
     val json = Json.toJson(hotelList)
 
     //Ok(views.html.index("Your new application is ready."))
     Ok(json)
-    
+
   }
-  def hotelListSortByPrice(sortBy:String,sortDir:String) = Action{
-    println("BY CITY")
-    val hotelList: List[Hotel] = HotelMD.getHotelSortedByPrice(sortBy,sortDir)
-    println(hotelList)
+  def hotelListSortByPrice(sortBy: String, sortDir: String) = Action {
+    //println("BY CITY")
+    val hotelList: List[Hotel] = HotelMD.getHotelSortedByPrice(sortBy, sortDir)
+    //println(hotelList)
     val json = Json.toJson(hotelList)
-
     //Ok(views.html.index("Your new application is ready."))
     Ok(json)
-    
+
   }
 
 }

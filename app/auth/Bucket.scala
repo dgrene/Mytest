@@ -10,23 +10,22 @@ import scala.collection.mutable.Queue
 class Bucket(rate: Int, unit: TimeUnit, user: User) {
   // Precalculate the sleep time.
   private val millis = unit.toMillis(1) / rate
-  //private val millis = 30000
 
   private val nanos = TimeUnit.MILLISECONDS.toNanos(unit.toMillis(1) % rate) / rate
 
   //println("nanos :: " + nanos)
-  println("millies :: " + millis)
+  //println("millies :: " + millis)
 
-  // The synchronous queue is used as the handoff between the leaking thread and
-  // callers waiting for a drop from the bucket.
+  //creating queue for user
   private val queue = new Queue[Int]
 
   def fullBucket(rate: Int) {
     for (i <- 1 to rate) {
       queue.enqueue(1)
     }
-    println("bucket Full :: " + queue.length)
+    //println("bucket Full :: " + queue.length)
   }
+
   // Background thread to generate drops.
   private val filler = new Thread(new Runnable() {
     def run() {
@@ -54,7 +53,8 @@ class Bucket(rate: Int, unit: TimeUnit, user: User) {
   /**
    * Wait for a drop indefinitely.
    */
-  def take(): Boolean = {
+  def take(): (Boolean, String) = {
+    val timeLeft = (millis * ((if (queue.length == 0) rate else rate - queue.length)) / 1000).toString() + " sec"
     println("unit :: " + queue.length)
     println("takinig")
     //println(queue.take())
@@ -64,26 +64,26 @@ class Bucket(rate: Int, unit: TimeUnit, user: User) {
         println("Serve again :: ")
         user.currentStatus = true
         queue.dequeue()
-        true
+        (true, "")
       } else {
         //hold it
         println("Holding ...")
-        false
+        (false, timeLeft)
       }
     } else {
       if (queue.isEmpty) {
         println("wait")
         //Thread.sleep(10000)
-        user.lastRequestTime = "wait"
+
         user.currentStatus = false
-        false
+        (false, timeLeft)
       } else {
 
         queue.dequeue()
         //println("success")
         //println(s"unit remaining :: ${queue.length - 1}")
 
-        true
+        (true, "")
       }
     }
 

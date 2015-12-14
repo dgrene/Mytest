@@ -1,4 +1,39 @@
-This is your new Play application
+new Play application
 =================================
+# Home page
+GET   /                      http://localhost:9000/                                                        get list of all hotels
 
-This file will be packaged with your application, when using `activator dist`.
+GET   /hotels/search         http://localhost:9000/?city = ban                                             search city by city name
+
+GET   /hotels/browse         https://localhost:9000/?sortBy = price & sortDirection = asc or desc          sort and order by price
+
+
+
+
+
+ -> Mytest/app/auth/AuthorizeAction.scala
+ 	
+ 	    -File contains request filtering logic
+ 	
+ -> Mytest/app/auth/Bucket.scala
+ 	
+ 		- File contains Bucket class for rate limit
+ 		
+ -> Mytest/app/controllers/Application.scala
+ 	
+ 		- File contains controller actions based on routes 
+ 		
+ -> Mytest/app/models/HotelMD.scala
+ 		
+ 		- File contains model logic to interact with DB
+ 		
+ -> Mytest/conf/application.conf
+ 
+ 		- File contains app configuration
+ 
+  -> Mytest/conf/routes
+ 
+ 		- File contains app routes
+ 
+ 
+ 

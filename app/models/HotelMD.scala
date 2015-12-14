@@ -21,7 +21,7 @@ object HotelMD {
 
   def getHotelByCity(s: String) = {
     val query = s"Select * from Hotels WHERE  CITY LIKE '%$s%'"
-    println(query)
+    //println(query)
     DB.withConnection { implicit c =>
       val result: List[Hotel] = SQL(query).as(parser.*)
       println(result)

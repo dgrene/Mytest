@@ -3,12 +3,12 @@
 # ~~~~
 
 # Home page
-GET   /               controllers.Application.index
+GET   /                controllers.Application.index
 
-GET   /hotels/search         controllers.Application.hotelList(city: String ?= "")
+GET   /hotels/search   controllers.Application.hotelList(city: String ?= "")
 
 
-GET   /hotels/browse         controllers.Application.hotelListSortByPrice(sortBy: String ?= "price", sortDirection: String ?= "asc")
+GET   /hotels/browse   controllers.Application.hotelListSortByPrice(sortBy: String ?= "price", sortDirection: String ?= "asc")
 
 # Map static resources from the /public folder to the /assets URL path
-GET   /assets/*file   controllers.Assets.versioned(path="/public", file: Asset)
+GET   /assets/*file    controllers.Assets.versioned(path="/public", file: Asset)
