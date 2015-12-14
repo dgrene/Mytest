@@ -4,7 +4,7 @@ package auth
  * @author deepak
  */
 
-import java.util.concurrent.{ TimeUnit, SynchronousQueue }
+import java.util.concurrent.{ TimeUnit }
 import scala.collection.mutable.Queue
 
 class Bucket(rate: Int, unit: TimeUnit, user: User) {
